@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{verbatim}
+\usepackage{newverbs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage{geometry}
+
+\spanishdecimal{.}
+
+\DeclareMathOperator{\divop}{div}
+\DeclareMathOperator{\rotop}{rot}
+\def\Eqref#1{(\ref{#1})}
+
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+\input{maxima.tex}
+
+\def\enumalph{\renewcommand{\labelenumi}{$(\alph{enumi})$}}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{minipage}{.4\textwidth}
+	\includegraphics[width=\linewidth]{uca.jpg}
+\end{minipage}
+%
+\begin{minipage}{.6\textwidth}
+	\begin{flushright}
+		{\Large Matemáticas II}
+
+		\medskip
+		{\large Grado en química}
+
+		\medskip
+		Curso 2021-2022
+	\end{flushright}
+\end{minipage}
+
+\medskip
+\textbf{\Large Práctica 2. Métodos numéricos}
+
+\section{Interpolación}
+\input{lagrange}
+\input{newton}
+\input{hermite}
+
+\end{document}
