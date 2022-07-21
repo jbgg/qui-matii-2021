@@ -1,0 +1,74 @@
+%!TeX root=main.tex
+
+\section{Bucle \maximain{while}}
+
+El bucle \maximain{while} tiene la siguiente forma
+\begin{center}
+	\maximain{while} condición \maximain{do} expresión
+\end{center}
+donde se indica una condición y una expresión,
+y dicha expresión se seguirá ejecutando mientras la
+condición sea cierta. Cuando se quiera ejecutar más
+de una orden se usará paréntesis separando por comas
+las diferentes órdenes.
+
+Veamos un ejemplo donde se usa una variable \maximain{n}
+para la condición del bucle, en particular el bucle se ejecutará
+siempre \maximain{n<5}. En este caso la variable \maximain{n}
+se inicializa con el valor \maximain{0} y en cada iteración
+se aumenta en una unidad.
+
+Veamos el mismo ejemplo donde el valor de la variable
+\maximain{n} se actualiza al principio de la ejecución.
+
+\input{while-1.tex}
+
+Mostramos ahora un ejemplo usando aleatoriedad.
+
+\input{while-2.tex}
+
+Observe que cada vez que se ejecute tendrá una
+salida diferente, esto se debe a que la función
+\maximain{random} dará un valor diferente.
+
+\input{while-3.tex}
+
+La condición del bucle se comprueba incluso antes de ejecutar
+el bucle, así que puede ocurrir que la expresión del bucle no
+se ejecute ninguna vez.
+
+\input{while-4.tex}
+
+Una funcionalidad importante de los bucles \maximain{while}
+es que pueden parar de ejecutar en función de alguna condición.
+A continuación vamos a encontrar el primer elemento no nulo
+de una lista usando este tipo de bucle.
+
+\input{while-5.tex}
+
+El ejemplo anterior se puede realizar de la siguiente manera
+donde se comprueba si el elemento de la lista sigue siendo
+nulo en la propia condición. Se ha aprovechado el uso de paréntesis
+en una condición en la que se ejecuta comandos en la condición,
+la comprobación se realiza al último elemento del paréntesis.
+
+\input{while-6.tex}
+
+Se puede escribir una función que se llame \maximain{buscanonulo}
+y que admita un lista, y devuelva el índice y el valor del
+primer elemento no nulo del lista.
+
+\input{while-7.tex}
+
+Vamos a presentar a continuación el código que en una lista
+de elementos que son lista de números encuentra la primera
+que su suma es cero.
+Primero definamos una lista para probar el código, llamemos a la lista
+\maximain{ll}.
+Y a continuación mostramos los comandos para el cálculo.
+
+\input{while-8.tex}
+
+Como de costumbre creemos una función que realice esta comprobación.
+
+\input{while-9.tex}

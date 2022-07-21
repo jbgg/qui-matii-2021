@@ -1,0 +1,9 @@
+.*.swp
+*.pdf
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+
+precision-[0-9]*.tex
+errores-[0-9]*.tex

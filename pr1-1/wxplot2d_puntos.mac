@@ -1,0 +1,5 @@
+xx:create_list(%pi*i/8, i, 1, 16);
+puntos:create_list([x,sin(x)], x, xx);
+plot2d([discrete, puntos], [style,points],
+ [pdf_file, "./wxplot2d_puntos.pdf"]
+)$

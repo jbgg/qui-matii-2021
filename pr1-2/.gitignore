@@ -1,0 +1,11 @@
+main.pdf
+wxplot2d_puntos.pdf
+wxplot2d_puntos2.pdf
+.*.swp
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out

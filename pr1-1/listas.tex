@@ -1,0 +1,354 @@
+%!TeX root=main.tex
+
+\section{Listas y tablas}
+
+\subsection*{Creando listas}
+
+Las listas son objetos que almacenan valores de forma ordenada.
+A continuación mostramos cómo se pueden crear listas a partir de
+los valores que la forman.
+
+\begin{maximai}
+	lista:[2,-3,5,6];
+\end{maximai}\begin{maximao}
+	\left[ 2 , -3 , 5 , 6 \right]
+\end{maximao}\begin{maximai}
+	otralista:[1,2+1/2,[a,2,c],1+3*x+y^2];
+\end{maximai}\begin{maximao}
+	\left[ 1 , {{5}\over{2}} , \left[ a , 2 , c \right]  , y^2+3\,x+1
+	\right]
+\end{maximao}
+
+Una lista puede no tener ningún valor, esta es la lista vacía.
+\begin{maximai}
+	listavacia:[];
+\end{maximai}\begin{maximao}
+	\left[\  \right]
+\end{maximao}
+
+Existe un tipo de lista especial, que llamamos tabla, este tipo de lista
+almacena en cada entrada una nueva lista con la particularidad que todas
+estas listas tienen el mismo número de elementos.
+
+Por ejemplo una tabla almacenando dos valores cada vez.
+\begin{maximai}
+	tabla:[[1,2],[-3,4],[8,7],[-10,11]];
+\end{maximai}\begin{maximao}
+	\left[ \left[ 1 , 2 \right]  , \left[ -3 , 4 \right]  , \left[ 8 ,
+	7 \right]  , \left[ -10 , 11 \right]  \right]
+\end{maximao}
+Y otro ejemplo de una tabla almacenando tres valores.
+\begin{maximai}
+	otratabla:[[1,2,2],[-3,8,4],[8,-2,7],[-10,99,11]];
+\end{maximai}\begin{maximao}
+	\left[ \left[ 1 , 2 , 2 \right]  , \left[ -3 , 8 , 4 \right]  ,
+	\left[ 8 , -2 , 7 \right]  , \left[ -10 , 99 , 11 \right]  \right]
+\end{maximao}
+
+Anteriormente se han creado las listas expresando explícitamente todos
+sus elementos, pero también hay posibilidades de crear listas a partir
+de una expresión, esto se puede hacer con el comando
+\maximain{create\_list}, su usa de la siguiente manera
+\begin{center}
+	\maximain{create\_list(expr, i, $\texttt{i}_0$, $\texttt{i}_1$)}
+\end{center}
+y crea la lista evaluando en expresión el valor de \maximain{i},
+desde \maximain{$\texttt{i}_0$} hasta \maximain{$\texttt{i}_0$}.
+
+\begin{maximai}
+	create_list(2*i,i,1,10);
+\end{maximai}\begin{maximao}
+	\left[ 2 , 4 , 6 , 8 , 10 , 12 , 14 , 16 , 18 , 20 \right]
+\end{maximao}
+
+\begin{maximai}
+	create_list([i, 2*i],i,1,10);
+\end{maximai}\begin{maximao}
+	\left[ \left[ 1 , 2 \right]  , \left[ 2 , 4 \right]  , \left[ 3 , 6
+	\right]  , \left[ 4 , 8 \right]  , \left[ 5 , 10 \right]  , \left[
+		6 , 12 \right]  , \left[ 7 , 14 \right]  , \left[ 8 , 16 \right]  ,
+	\left[ 9 , 18 \right]  , \left[ 10 , 20 \right]  \right]
+\end{maximao}
+
+Otra manera de usar la función
+\maximain{create\_list} es la siguiente
+\begin{center}
+	\maximain{create\_list(expr, i, lista)}
+\end{center}
+evaluando los valores de \maximain{i} en cada
+valor de la lista \maximain{lista}.
+
+\begin{maximai}
+	xx:create_list(%pi*i/8, i, 1, 16);
+\end{maximai}\begin{maximao}
+	\left[ {{\pi}\over{8}} , {{\pi}\over{4}} , {{3\,\pi}\over{8}} , {{
+		\pi}\over{2}} , {{5\,\pi}\over{8}} , {{3\,\pi}\over{4}} , {{7\,\pi
+	}\over{8}} , \pi , {{9\,\pi}\over{8}} , {{5\,\pi}\over{4}} , {{11\,
+	\pi}\over{8}} , {{3\,\pi}\over{2}} , {{13\,\pi}\over{8}} , {{7\,\pi
+	}\over{4}} , {{15\,\pi}\over{8}} , 2\,\pi \right]
+\end{maximao}\begin{maximai}
+	puntos:create_list([x,sin(x)], x, xx);
+\end{maximai}\begin{maximao}
+	\left[ \left[ {{\pi}\over{8}} , \sin \left({{\pi}\over{8}}\right)
+	\right]  , \left[ {{\pi}\over{4}} , {{1}\over{\sqrt{2}}} \right]
+	, \left[ {{3\,\pi}\over{8}} , \sin \left({{3\,\pi}\over{8}}\right)
+	\right]  ,
+	%\left[ {{\pi}\over{2}} , 1 \right]  , \left[ {{5\,\pi
+	%\over{8}} , \sin \left({{5\,\pi}\over{8}}\right) \right]  , \left[
+	%{{3\,\pi}\over{4}} , {{1}\over{\sqrt{2}}} \right]  , \left[ {{7\,\pi
+	%}\over{8}} , \sin \left({{7\,\pi}\over{8}}\right) \right]  , \left[
+	%\pi , 0 \right]  , \left[ {{9\,\pi}\over{8}} , \sin \left({{9\,\pi
+	%}\over{8}}\right) \right]  , \left[ {{5\,\pi}\over{4}} , -{{1}\over{
+	%\sqrt{2}}} \right]  , \left[ {{11\,\pi}\over{8}} , \sin \left({{11\,
+	%\pi}\over{8}}\right) \right]  , \left[ {{3\,\pi}\over{2}} , -1
+	%\right]  , \left[ {{13\,\pi}\over{8}} , \sin \left({{13\,\pi}\over{
+	%8}}\right) \right]  , \left[ {{7\,\pi}\over{4}} , -{{1}\over{\sqrt{2
+	%}}} \right]
+	\ldots
+	, \left[ {{15\,\pi}\over{8}} , \sin \left({{15\,\pi
+	}\over{8}}\right) \right]  , \left[ 2\,\pi , 0 \right]  \right]
+\end{maximao}
+
+Para obtener un elemento de una lista debemos indicar su posición
+entre corchetes. Por ejemplo el primer elemento de \maximain{xx}.
+\begin{maximai}
+	xx[1];
+\end{maximai}\begin{maximao}
+	{{\pi}\over{8}}
+\end{maximao}
+
+O el elemento tercero de la tabla \maximain{puntos}.
+\begin{maximai}
+	puntos[3];
+\end{maximai}\begin{maximao}
+	\left[ {{3\,\pi}\over{8}} , \sin \left({{3\,\pi}\over{8}}\right)
+	\right]
+\end{maximao}
+
+Este último a su vez es una lista, así que podríamos obtener
+el segundo elemento del tercer elemento de la tabla \maximain{puntos}
+de la siguiente manera.
+\begin{maximai}
+	puntos[3][2];
+\end{maximai}\begin{maximao}
+	\sin \left({{3\,\pi}\over{8}}\right)
+\end{maximao}
+
+El tamaño de una lista se puede obtener con la función
+\maximain{length}.
+\begin{maximai}
+	length(xx);
+\end{maximai}\begin{maximao}
+	16
+\end{maximao}\begin{maximai}
+	length(puntos);
+\end{maximai}\begin{maximao}
+	16
+\end{maximao}\begin{maximai}
+	length(puntos[1]);
+\end{maximai}\begin{maximao}
+	2
+\end{maximao}\begin{maximai}
+	length([]);
+\end{maximai}\begin{maximao}
+	0
+\end{maximao}
+
+\subsection*{Representación de tablas}
+
+Los puntos anteriores se podrían representar de la siguiente manera.
+
+\begin{maximai}
+	wxplot2d([discrete, puntos], [style,points]);
+\end{maximai}\begin{maximat}
+	\begin{center}
+		\includegraphics[scale=.5]{wxplot2d_puntos.pdf}
+	\end{center}
+\end{maximat}
+
+En el caso anterior se ha evaluado una función que ya
+tiene definida maxima como \maximain{cos}.
+Pero también se puede usar una función definida por el usuario.
+\begin{maximai}
+	f(x):=x^3-3*x^2+5*x-2$
+\end{maximai}\begin{maximai}
+	xx2:create_list(2*i+1, i, 0, 4);
+\end{maximai}\begin{maximao}
+	\left[ 1 , 3 , 5 , 7 , 9 \right]
+\end{maximao}\begin{maximai}
+	puntos2:create_list(f(x),x,xx2);
+\end{maximai}\begin{maximao}
+	\left[ 1 , 13 , 73 , 229 , 529 \right] 
+\end{maximao}\begin{maximai}
+	wxplot2d([discrete, puntos2], [style,points]);
+\end{maximai}\begin{maximat}
+	\begin{center}
+		\includegraphics[scale=.5]{wxplot2d_puntos2.pdf}
+	\end{center}
+\end{maximat}
+
+En el ejemplo anterior se ha representado los puntos
+de la función $f$ en los que los valores
+de abscisas son los números impares del 1 al 9.
+
+
+\subsection*{Operaciones sobre listas}
+
+A partir de listas se pueden calcular nuevas listas.
+Una posibilidad es aplicar operaciones artiméticas
+entre listas.
+
+\begin{maximai}
+	a:[1,2,3,4,5]$
+\end{maximai}\begin{maximal}
+	b:[6,7,8,9,0]$
+\end{maximal}
+\begin{maximai}
+	a+b;
+\end{maximai}\begin{maximao}
+	\left[ 7 , 9 , 11 , 13 , 5 \right]
+\end{maximao}\begin{maximai}
+	a-b;
+\end{maximai}\begin{maximao}
+	\left[ -5 , -5 , -5 , -5 , 5 \right]
+\end{maximao}\begin{maximai}
+	a*b;
+\end{maximai}\begin{maximao}
+	\left[ 6 , 14 , 24 , 36 , 0 \right]
+\end{maximao}\begin{maximai}
+	b/a;
+\end{maximai}\begin{maximao}
+	\left[ 6 , {{7}\over{2}} , {{8}\over{3}} , {{9}\over{4}} , 0
+	\right]
+\end{maximao}\begin{maximai}
+	a^2;
+\end{maximai}\begin{maximao}
+	\left[ 1 , 4 , 9 , 16 , 25 \right]
+\end{maximao}\begin{maximai}
+	sqrt(b);
+\end{maximai}\begin{maximao}
+	\left[ \sqrt{6} , \sqrt{7} , 2^{{{3}\over{2}}} , 3 , 0 \right]
+\end{maximao}
+
+Como vemos las operaciones se aplica elemento a elemento.
+
+El producto escalar se calcula con el operador punto (\maximain{.}).
+\begin{maximai}
+	a.b;
+\end{maximai}\begin{maximao}
+	80
+\end{maximao}
+
+Existen otras operaciones definidas en maxima como las que veremos
+a continuación, pero para ello definamos previamente una lista para
+y una tabla.
+
+\begin{maximai}
+	lista1:[2,-3,5,6];
+\end{maximai}\begin{maximao}
+	\left[ 2 , -3 , 5 , 6 \right]
+\end{maximao}\begin{maximai}
+	tabla:[[1,2],[-3,4],[8,7],[-10,11]];
+\end{maximai}\begin{maximao}
+	\left[ \left[ 1 , 2 \right]  , \left[ -3 , 4 \right]  , \left[ 8 ,
+	7 \right]  , \left[ -10 , 11 \right]  \right]
+\end{maximao}
+
+\begin{itemize}
+
+	\item \maximain{delete}. Devuelve una nueva lista con los valores
+		eliminados.
+		\begin{maximai}
+			lista2:delete(-3,lista1);
+		\end{maximai}\begin{maximao}
+			\left[ 2 , 5 , 6 \right]
+		\end{maximao}
+
+	\item \maximain{cons}. Devuelve una nueva lista añadiendo al principio
+		de la lista el valor que se indique.
+		\begin{maximai}
+			lista3:cons(-5,lista1);
+		\end{maximai}\begin{maximao}
+			\left[ -5 , 2 , -3 , 5 , 6 \right]
+		\end{maximao}
+
+	\item \maximain{append}. Calcula una nueva lista uniendo la primera
+		lista con la segunda.
+		\begin{maximai}
+			lista4:append(lista2,lista3);
+		\end{maximai}\begin{maximao}
+			\left[ 2 , 5 , 6 , -5 , 2 , -3 , 5 , 6 \right]
+		\end{maximao}
+
+	\item \maximain{reverse}. Calcula una nueva lista cambiando los
+		valores de orden.
+		\begin{maximai}
+			lista5:reverse(lista4);
+		\end{maximai}\begin{maximao}
+			\left[ 6 , 5 , -3 , 2 , -5 , 6 , 5 , 2 \right]
+		\end{maximao}
+
+	\item \maximain{unique}. Devuelve una nueva lista eliminando los
+		valores repetidos.
+		\begin{maximai}
+			lista6:unique(lista5);
+		\end{maximai}\begin{maximao}
+			\left[ -5 , -3 , 2 , 5 , 6 \right]
+		\end{maximao}
+
+	\item \maximain{sort}. Calcula una nueva lista ordenando los valores
+		de menor a mayor.
+		\begin{maximai}
+			lista7:sort(lista6);
+		\end{maximai}\begin{maximao}
+			\left[ -5 , -3 , 2 , 5 , 6 \right]
+		\end{maximao}
+
+	\item \maximain{flatten}. Esta función aplicada a una tabla unifica
+		los valores en una única lista.
+		\begin{maximai}
+			flatten(tabla);
+		\end{maximai}\begin{maximao}
+			\left[ 1 , 2 , -3 , 4 , 8 , 7 , -10 , 11 \right]
+		\end{maximao}
+
+\end{itemize}
+
+\subsection*{Ejercicios}
+
+\begin{enumerate}
+
+	\item \begin{enumerate}
+			\item Definir la función $f(k)=\frac{2k\pi}{6}$.
+			\item Definir una lista evaluando la función en los valores
+				$k=0,\ldots,5$.
+			\item Crear una lista de puntos $(\cos x, \sin x)$, para
+				cada valor de $x$ de la lista anterior.
+			\item Representar gráficamente los puntos anteriores.
+	\end{enumerate}
+
+\item \begin{enumerate}
+		\item Definir la función
+			\begin{equation*}
+				f(x) = \left( \frac{\sqrt{2}\cos x}{\sin^2 x +1},
+				\frac{\sqrt{2}\cos x\sin x}{\sin^2 x +1},\right).
+			\end{equation*}
+		\item Crear una lista de valores desde 0 hasta 10,
+			con un espacio entre valores de $0.1$
+		\item Crear una tabla con las imágenes de $f$ en los
+			valores anteriores.
+		\item Representar gráficamente la tabla anterior.
+\end{enumerate}
+
+		\item \begin{enumerate}
+				\item Crear una tabla de 5 elementos con los puntos
+					$(n,2n^3,n-2)$ empezando en $n=0$.
+				\item Obtener el elemento cuarto de la tabla anterior.
+				\item Obtener el elemento segundo del tercer elemento
+					de la tabla.
+				\item Escribir la tabla como una única lista.
+				\item Ordenar la lista anterior.
+				\item Ordenar la lista de mayor a menor.
+		\end{enumerate}
+
+\end{enumerate}

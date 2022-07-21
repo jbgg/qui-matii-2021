@@ -1,0 +1,59 @@
+%!TeX root=main.tex
+
+\section*{Ejercicios}
+
+\begin{enumerate}
+
+	\item Escriba un comando usando el bucle \maximain{while}
+para calcular la suma de los números impares entre 7 y 25, ambos inclusives.
+
+	\item Escriba un comando usando el bucle \maximain{while}
+para calcular la suma de los números positivos del lista.
+Por ejemplo la suma de los números positivos de la lista
+%ei lista:[2,3,-1,0,5];
+\begin{maximai}
+lista:[2,3,-1,0,5];
+\end{maximai}
+%do
+\begin{maximao}
+\left[ 2 , 3 , -1 , 0 , 5 \right] 
+\end{maximao}
+%e es
+es
+%c suma:0$ for v in lista do if v>0 then suma:suma+v$ suma;
+%d $ $.
+$
+10
+$.
+Escriba una función llamada \maximain{sumapos} que haga el
+cálculo anterior para una lista de números.
+
+	\item Escriba un comando usando el bucle \maximain{while}
+que verifique si el número 42 está en una lista o no.
+Defina una función llamada \maximain{estaono(lista,n)}, siendo
+el primer argumento una lista de números y el segundo argumento
+un valor \maximain{n}, la función devolverá \maximain{true}
+si el número \maximain{n} está en la lista \maximain{lista}.
+Por ejemplo
+%c estaono(lista,n):=block([esta:false,i:1],
+%c while i<=length(lista) and not esta do
+%c (if lista[i]=n then esta:true, i:i+1),
+%c esta)$
+%ei estaono([7,-4,8,9,23,42,0],42);
+\begin{maximai}
+estaono([7,-4,8,9,23,42,0],42);
+\end{maximai}
+%do
+\begin{maximao}
+\mathbf{true}
+\end{maximao}
+%ei estaono([7,-4,8,9,23,42,0],142);
+\begin{maximai}
+estaono([7,-4,8,9,23,42,0],142);
+\end{maximai}
+%do
+\begin{maximao}
+\mathbf{false}
+\end{maximao}
+
+\end{enumerate}

@@ -1,0 +1,49 @@
+
+\newcounter{maximaic}
+\newcounter{maximaoc}
+
+\setcounter{maximaic}{1}
+\setcounter{maximaoc}{0}
+
+\newenvironment{maximai}
+{\noindent
+
+ {\color{red}\bfseries (\% i\arabic{maximaic}) }
+ \color{blue}\verb}{
+\stepcounter{maximaic}
+\stepcounter{maximaoc}
+
+}
+\newenvironment{maximal}
+{\noindent
+ \phantom{\color{red}\bfseries (\% i\arabic{maximaic}) }
+ \color{blue}\verb}{
+
+}
+
+\newenvironment{maximao}
+{
+ {\bfseries\color{orange}(\% o\arabic{maximaoc}) }
+ $ \displaystyle
+  }{$
+
+}
+
+\newenvironment{maximaoo}
+{
+ \stepcounter{maximaic}
+ \stepcounter{maximaoc}
+ {\bfseries\color{orange}(\% o\arabic{maximaoc}) }
+ $ \displaystyle
+  }{$
+
+}
+
+\newenvironment{maximat}
+{
+ {\bfseries\color{orange}(\% t\arabic{maximaoc}) }
+  }{
+
+}
+
+\newcommand{\maximain}[1]{\textcolor{blue}{\texttt{#1}}}

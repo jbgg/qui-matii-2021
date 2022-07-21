@@ -1,0 +1,10 @@
+main.pdf
+while-[0-9]*.tex
+.*.swp
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out

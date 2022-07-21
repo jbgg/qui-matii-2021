@@ -1,0 +1,164 @@
+%!TeX root=main.tex
+
+\section{Lógica}
+
+\subsection*{Valores lógicos}
+
+En lógica se estudia la veracidad de las proposiciones,
+esto es, si una proposición puede ser cierta o falsa.
+En maxima existe los valores
+\maximain{true} y \maximain{false}.
+Aunque cuando se hace comprobaciones de variables que
+no conoce ni sus valores ni ninguna propiedad puede que
+resulte en \maximain{unknown}.
+A continuación mostramos algunos ejemplos.
+
+\begin{maximai}
+is(2<3);
+\end{maximai}
+\begin{maximao}
+\mathbf{true}
+\end{maximao}
+
+\begin{maximai}
+is(3<2);
+\end{maximai}
+\begin{maximao}
+\mathbf{false}
+\end{maximao}
+
+\begin{maximai}
+is(a<b);
+\end{maximai}
+\begin{maximao}
+{\it unknown}
+\end{maximao}
+
+El comando \maximain{is} da la información sobre la veracidad
+de una expresión.
+
+\subsection*{Operaciones de comparación}
+
+Existen relaciones entre números,
+por ejemplo igualdad, mayor igual, menor, \ldots,
+estas relaciones pueden ser ciertas o falsas.
+En maxima existen relaciones de comparación, a continuación
+se muestran.
+\begin{itemize}
+	\item \maximain{=}. Igualdad.
+	\item \maximain{\#}. Distinto.
+	\item \maximain{<}. Menor.
+	\item \maximain{<=}. Menor o igual.
+	\item \maximain{>}. Mayor.
+	\item \maximain{>=}. Mayor o igual.
+\end{itemize}
+
+Estas relaciones se pueden usar dentro del comando
+\maximain{is}, como se ha visto en la sección anterior.
+
+\subsection*{Operadores lógicos}
+
+Existen operaciones entre los valores lógicos,
+estos son operadores lógicos.
+Algunos operadores lógicos se muestran a continuación.
+\begin{itemize}
+	\item \maximain{and}. Este operador es el ``y'' lógico.
+		Devuelve \maximain{true} siempre que todos los operandos
+		son ciertos, en otro caso es \maximain{false}.
+	\item \maximain{or}. Este operador es el ``o'' lógico.
+		Devuelve \maximain{true} siempre que exista al menos
+		un operando que sea cierto, en otro caso es \maximain{false}.
+	\item \maximain{not}. Este es el operador negación, y solamente
+		acepta un operando, devolviendo el valor opuesto.
+\end{itemize}
+
+Las operaciones anteriores sirven para comprobar diferentes situaciones.
+Por ejemplo para probar que la variable \maximain{a} está en el intervalo
+$[0,1]$ se puede hacer lo siguiente.
+
+\begin{maximai}
+is(0<a and a<1);
+\end{maximai}
+\begin{maximao}
+{\it unknown}
+\end{maximao}
+
+El caso anterior el resultado es \textit{unknown} ya que la variable
+\maximain{a} no tiene ningún valor.
+
+Además de valores numéricos se pueden comparar expresiones,
+recuerde que en maxima se trabaja por defecto con expresiones simbólicas.
+Dos expresiones pueden resultar falsas comprobadas de forma simbólicas
+aunque algebraicamente sean iguales, esto se debe a que la igualdad
+de expresiones en maxima se verifica cuando está escrita de la misma manera.
+Obsevese el siguiente ejemplo.
+
+\begin{maximai}
+is((x+1)^2=x^2+2*x+1);
+\end{maximai}
+\begin{maximao}
+\mathbf{false}
+\end{maximao}
+
+\begin{maximai}
+is(expand((x+1)^2)=x^2+2*x+1);
+\end{maximai}
+\begin{maximao}
+\mathbf{true}
+\end{maximao}
+
+\subsection*{Suposiciones}
+
+En ciertas ocasiones es necesario suponer que
+una variable verifica alguna condición.
+Los comandos \maximain{assume} y \maximain{forget}
+sirven para ello.
+Veamos cómo funciona en el siguiente caso.
+Por una parte sabemos lo siguiente.
+
+\begin{maximai}
+is((x+1)^2>=0);
+\end{maximai}
+\begin{maximao}
+\mathbf{true}
+\end{maximao}
+
+Pero si $x\neq-1$ entonces debería ser cierto que
+\maximain{(x+1)\^{}2>0}.
+Para que maxima tenga en cuenta que la variable \maximain{x}
+verifica que es distinto a $-1$ y comprobar la desigualdad
+anterior se procede como sigue.
+
+\begin{maximai}
+assume(notequal(x,-1));
+\end{maximai}
+\begin{maximao}
+\left[ {\it notequal}\left(x , -1\right) \right] 
+\end{maximao}
+
+\begin{maximai}
+is((x+1)^2>0);
+\end{maximai}
+\begin{maximao}
+\mathbf{true}
+\end{maximao}
+
+A partir de ahora maxima ya sabe que $\maximain{x}\neq-1$.
+Para que deje de suponer la condición anterior habrá que usar
+\maximain{forget}.
+
+\begin{maximai}
+forget(notequal(x,-1));
+\end{maximai}
+\begin{maximao}
+\left[ {\it notequal}\left(x , -1\right) \right] 
+\end{maximao}
+
+A partir de ahora se tiene lo siguiente.
+
+\begin{maximai}
+is((x+1)^2>0);
+\end{maximai}
+\begin{maximao}
+{\it unknown}
+\end{maximao}

@@ -1,0 +1,25 @@
+%!TeX root=main.tex
+
+\section{Números y precisión}
+
+Debido a la naturaleza de los ordenadores y su capacidad
+limitada, los cálculos numéricos no serán exactos.
+Existirán ciertos errores que aparecerán debido a diferentes
+factores.
+Uno de los errores proviene de trabajar con una aproximación
+en lugar del número exacto.
+Por ejemplo, en numérico no se va a obtener el número $\sqrt{2}$.
+
+\input{precision-1}
+
+Está claro que no se podrá calcular numericamente de forma
+exacta el número $\sqrt{2}$. Aunque maxima sí que tiene un
+tipo de número que se conoce commo \maximain{bfloat} que
+puede trabajar en precisión arbitraria.
+Esto significa que se puede indicar el número de dígitos
+que se va a trabajar.
+El número de dígitos se controla con la variable
+\maximain{fpprec} y para definir números de este tipo
+se usa la función \maximain{bfloat}.
+
+\input{precision-2}

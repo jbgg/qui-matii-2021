@@ -1,0 +1,200 @@
+%!TeX root=main.tex
+
+\section{Funciones}
+
+Maxima ya incorpora algunas funciones ya definidas,
+pero también se pueden incorporar funciones definidas
+por el usuario.
+Cuando nos referimos a funciones en maxima no solamente
+nos referimos a las funciones matemáticas con valores numéricos,
+sino a funciones que pueden usar todo tipo de datos de maxima.
+Un ejemplo de funciones que no son matemáticas son las funciones
+que se aplican a las listas.
+
+Las funciones sirven para automatizar un proceso con datos sin determinar,
+estos son los argumentos, que a la hora de usar la función toman los valores
+que se le indique.
+
+Por ejemplo, podríamos definir el logaritmo en base 2 como mostramos.
+\begin{maximai}
+	log2(x):=log(x)/log(2)$
+\end{maximai}
+
+Y usar la función de la siguiente forma.
+\begin{maximai}
+	log2(32),numer;
+\end{maximai}\begin{maximao}
+	5.0
+\end{maximao}
+
+Y también se podría definir el logaritmo en base 3, 4, 5, \ldots
+pero entonces nos damos cuenta que la base también puede ser un argumento
+de la función, y así tendríamos todas las posibilidades.
+
+\begin{maximai}
+	logb(x,b):=log(x)/log(b)$
+\end{maximai}\begin{maximai}
+	logb(25,5),numer;
+\end{maximai}\begin{maximao}
+	2.0
+\end{maximao}
+
+A veces hace falta definir funciones que hacen algunos cálculos
+intermedios, en este caso hay que definir la función con un comando
+conocido como \maximain{block}.
+
+
+\begin{maximai}
+	f1(a,b,c):=block([u,v], u:b-c, v:a-b, u/v)$
+\end{maximai}
+\begin{maximai}
+	f1(2,3,1);
+\end{maximai}\begin{maximao}
+	-2
+\end{maximao}
+
+En el ejemplo anterior se han usado las variables \maximain{u} y
+\maximain{v} para guardar los cálculos intermedios, y el resultado
+que se calcula en la función es el último, \maximain{u/v}.
+
+\begin{maximai}
+	f2(y):=block([u:y^2], u:u+3, u:u^2, u)$
+\end{maximai}
+\begin{maximai}
+	f2(4);
+\end{maximai}\begin{maximao}
+	361
+\end{maximao}
+
+En el ejemplo anterior la variable auxiliar \maximain{u} se inicializa
+con una expresión del argumento.
+
+En ciertas ocasiones es útil escribir un mensaje por pantalla en cierto
+momento en el cálulo de la función.
+
+
+\begin{maximai}
+	f3(x):=block(print("saludos"),x^2+1)$
+\end{maximai}\begin{maximai}
+	f3(-1);
+\end{maximai}\begin{maximaop}
+	\text{saludos}
+\end{maximaop}\begin{maximao}
+	2
+\end{maximao}
+
+En el siguiente ejemplo mostramos como se repite la llamada de la función.
+
+\begin{maximai}
+	create_list(f3(i^2),i,1,3);
+\end{maximai}\begin{maximaop}
+	\text{saludos}
+\end{maximaop}\begin{maximaop}
+	\text{saludos}
+\end{maximaop}\begin{maximaop}
+	\text{saludos}
+\end{maximaop}\begin{maximao}
+	\left[ 2 , 17 , 82 \right]
+\end{maximao}
+
+A continuación se muestra cómo se crearía una función que calcula
+el módulo de un número imaginario.
+
+\begin{maximai}
+	f4(x,y):=block([re,im,g:x+%i*y], re:realpart(g), im:imagpart(g),
+\end{maximai}\begin{maximal}
+	sqrt(re^2+im^2))$
+\end{maximal}\begin{maximai}
+	f4(2,-1);
+\end{maximai}\begin{maximao}
+	\sqrt{5}
+\end{maximao}
+
+Existe una forma para admitir un número indeterminado de argumentos.
+
+\begin{maximai}
+	sumdif([x]):=x^2 . create_list( (-1)^(k+1),k,1,length(x))$
+\end{maximai}\begin{maximai}
+	sumdif(a,b,c,d,e,f,g);
+\end{maximai}\begin{maximao}
+	g^2-f^2+e^2-d^2+c^2-b^2+a^2
+\end{maximao}\begin{maximai}
+	sumdif(1,1,-1,0,4,5,0,-8,9,-1);
+\end{maximai}\begin{maximao}
+	8
+\end{maximao}\begin{maximai}
+	sumdif(2,u+v);
+\end{maximai}\begin{maximao}
+	4-\left(v+u\right)^2
+\end{maximao}
+
+Una función se puede pasar como argumento al definir una función.
+
+\begin{maximai}
+	funfun(G,a):=G(a^2)^2;
+\end{maximai}\begin{maximai}
+	funfun(log,2);
+\end{maximai}\begin{maximao}
+	\left(\log 4\right)^2
+\end{maximao}
+
+\begin{maximai}
+	funfun2(G,[x]):=G(x)$
+\end{maximai}\begin{maximai}
+	funfun2(sin,%pi,%pi/2);
+\end{maximai}\begin{maximao}
+	\left[ 0 , 1 \right]
+\end{maximao}
+
+Un argumento de la función puede también ser una lista,
+a continuación mostramos un ejemplo de ello.
+
+\begin{maximai}
+	ultimodelalista(L):=L[length(L)];
+\end{maximai}\begin{maximai}
+	ultimodelalista([1,-1,3,22,35,7]);
+\end{maximai}\begin{maximao}
+	7
+\end{maximao}
+
+\subsection*{Ejercicios}
+
+\begin{enumerate}
+		
+	\item % raíz n-ésima
+		Cree una función \maximain{raizn($a$,$n$)} que calcule la raíz
+		\maximain{$n$}-ésima del número \maximain{$a$}.
+
+	\item % derivada n-ésima de la función seno en un punto x
+		Cree una función \maximain{dsen($x$,$n$)} que calcule la derivada
+		\maximain{$n$}-ésima de la función $\sin$ en el punto \maximain{$x$}.
+
+
+	\item % crear una función mayoramenor que calcule una lista
+		% de mayor a menor... argumento...
+		Cree una función que tenga como argumento una lista y
+		calcule la lista ordenada de mayor a menor.
+
+	\item % el ejercicio 1 de la práctica de listas creaba
+		% una lista de puntos que formaban un hexágono,
+		% generalizar ...
+		% creando una función que admita, n, como argumento
+		% y genere una lista con los puntos formando un
+		% polígono regular de n puntos.
+		% el nombre de la función será poligonoregular(n)
+		% probarlo con el siguiente comando
+		% wxplot2d([discrete, poligonoregular(n)], [style,points]);
+		En el ejercicio 1 de la práctica sobre listas se calculaba
+		una lista de puntos que eran los vértices de un hexágono regular.
+		En este ejercicio se pide generalizarlo creando una función
+		\maximain{poligonoregular($n$)} que devuelva una lista de puntos
+		que sean los vértices de un polígono regular de \maximain{$n$} vértices.
+		Compruebese la solución graficando los puntos.
+
+	%\item % la función max(a,b,...) devuelve el máximo de los
+		% valores. Pero no funciona con listas es decir
+		% max([3,2]) no devuelve el máximo de la lista
+		% crear la función maxlist(l) que admite una lista
+		%La función \maximain{max($a$,$b$,\ldots)} está definida por maxima
+
+\end{enumerate}

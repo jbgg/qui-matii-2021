@@ -1,0 +1,329 @@
+Matemáticas II
+Grado en química
+Curso 2021-2022
+
+Práctica 1. Introducción a la programación
+1.
+
+Listas y tablas
+
+Creando listas
+Las listas son objetos que almacenan valores de forma ordenada. A continuación mostramos cómo
+se pueden crear listas a partir de los valores que la forman.
+( % i1) lista:[2,-3,5,6];
+( % o1) [2, −3, 5, 6]
+( % i2) otralista:[1,2+1/2,[a,2,c],1+3*x+y^2];
+
+
+5
+2
+( % o2) 1, , [a, 2, c] , y + 3 x + 1
+2
+Una lista puede no tener ningún valor, esta es la lista vacía.
+( % i3) listavacia:[];
+( % o3) [ ]
+Existe un tipo de lista especial, que llamamos tabla, este tipo de lista almacena en cada entrada
+una nueva lista con la particularidad que todas estas listas tienen el mismo número de elementos.
+Por ejemplo una tabla almacenando dos valores cada vez.
+( % i4) tabla:[[1,2],[-3,4],[8,7],[-10,11]];
+( % o4) [[1, 2] , [−3, 4] , [8, 7] , [−10, 11]]
+Y otro ejemplo de una tabla almacenando tres valores.
+( % i5) otratabla:[[1,2,2],[-3,8,4],[8,-2,7],[-10,99,11]];
+( % o5) [[1, 2, 2] , [−3, 8, 4] , [8, −2, 7] , [−10, 99, 11]]
+Anteriormente se han creado las listas expresando explícitamente todos sus elementos, pero también
+hay posibilidades de crear listas a partir de una expresión, esto se puede hacer con el comando
+create_list, su usa de la siguiente manera
+create_list(expr, i, i0 , i1 )
+
+1
+
+y crea la lista evaluando en expresión el valor de i, desde i0 hasta i0 .
+( % i6) create_list(2*i,i,1,10);
+( % o6) [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+( % i7) create_list([i, 2*i],i,1,10);
+( % o7) [[1, 2] , [2, 4] , [3, 6] , [4, 8] , [5, 10] , [6, 12] , [7, 14] , [8, 16] , [9, 18] , [10, 20]]
+Otra manera de usar la función create_list es la siguiente
+create_list(expr, i, lista)
+evaluando los valores de i en cada valor de la lista lista.
+( % i8) xx:create_list(%pi*i/8, i, 1, 16);
+
+
+π π 3π π 5π 3π 7π
+9 π 5 π 11 π 3 π 13 π 7 π 15 π
+( % o8)
+, ,
+, ,
+,
+,
+, π,
+,
+,
+,
+,
+,
+,
+,2π
+8 4 8 2 8 4 8
+8 4
+8
+2
+8
+4
+8
+( % i9) puntos:create_list([x,sin(x)], x, xx);
+h
+
+
+
+
+
+
+ π i  π 1   3 π
+π
+3π
+15 π
+15 π
+√
+( % o9)
+, sin
+,
+,
+, sin
+, sin
+,
+,...,
+, [2 π, 0]
+8
+8
+4
+8
+8
+8
+8
+2
+Para obtener un elemento de una lista debemos indicar su posición entre corchetes. Por ejemplo el
+primer elemento de xx.
+( % i10) xx[1];
+π
+( % o10)
+8
+O el elemento tercero de la tabla puntos.
+( % i11) puntos[3];
+
+
+
+3π
+3π
+( % o11)
+, sin
+8
+8
+Este último a su vez es una lista, así que podríamos obtener el segundo elemento del tercer elemento
+de la tabla puntos de la siguiente manera.
+( % i12) puntos[3][2];
+
+
+3π
+( % o12) sin
+8
+El tamaño de una lista se puede obtener con la función length.
+( % i13) length(xx);
+( % o13) 16
+( % i14) length(puntos);
+2
+
+( % o14) 16
+( % i15) length(puntos[1]);
+( % o15) 2
+( % i16) length([]);
+( % o16) 0
+
+Representación de tablas
+Los puntos anteriores se podrían representar de la siguiente manera.
+( % i17) wxplot2d([discrete, puntos], [style,points]);
+( % t17)
+
+1
+
+y
+
+0.5
+
+0
+
+-0.5
+
+-1
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+x
+
+En el caso anterior se ha evaluado una función que ya tiene definida maxima como cos. Pero también
+se puede usar una función definida por el usuario.
+( % i18) f(x):=x^3-3*x^2+5*x-2$
+( % i19) xx2:create_list(2*i+1, i, 0, 4);
+( % o19) [1, 3, 5, 7, 9]
+( % i20) puntos2:create_list(f(x),x,xx2);
+( % o20) [1, 13, 73, 229, 529]
+( % i21) wxplot2d([discrete, puntos2], [style,points]);
+( % t21)
+3
+
+500
+
+400
+
+y
+
+300
+
+200
+
+100
+
+0
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+x
+
+En el ejemplo anterior se ha representado los puntos de la función f en los que los valores de abscisas
+son los números impares del 1 al 9.
+
+Operaciones sobre listas
+A partir de listas se pueden calcular nuevas listas. Una posibilidad es aplicar operaciones artiméticas
+entre listas.
+( % i22) a:[1,2,3,4,5]$
+b:[6,7,8,9,0]$
+( % i23) a+b;
+( % o23) [7, 9, 11, 13, 5]
+( % i24) a-b;
+( % o24) [−5, −5, −5, −5, 5]
+( % i25) a*b;
+( % o25) [6, 14, 24, 36, 0]
+( % i26) b/a;
+
+
+7 8 9
+( % o26) 6, , , , 0
+2 3 4
+( % i27) a^2;
+( % o27) [1, 4, 9, 16, 25]
+
+4
+
+( % i28) sqrt(b);
+i
+h√ √
+3
+6, 7, 2 2 , 3, 0
+( % o28)
+Como vemos las operaciones se aplica elemento a elemento.
+El producto escalar se calcula con el operador punto (.).
+( % i29) a.b;
+( % o29) 80
+Existen otras operaciones definidas en maxima como las que veremos a continuación, pero para ello
+definamos previamente una lista para y una tabla.
+( % i30) lista1:[2,-3,5,6];
+( % o30) [2, −3, 5, 6]
+( % i31) tabla:[[1,2],[-3,4],[8,7],[-10,11]];
+( % o31) [[1, 2] , [−3, 4] , [8, 7] , [−10, 11]]
+delete. Devuelve una nueva lista con los valores eliminados.
+( % i32) lista2:delete(-3,lista1);
+( % o32) [2, 5, 6]
+cons. Devuelve una nueva lista añadiendo al principio de la lista el valor que se indique.
+( % i33) lista3:cons(-5,lista1);
+( % o33) [−5, 2, −3, 5, 6]
+append. Calcula una nueva lista uniendo la primera lista con la segunda.
+( % i34) lista4:append(lista2,lista3);
+( % o34) [2, 5, 6, −5, 2, −3, 5, 6]
+reverse. Calcula una nueva lista cambiando los valores de orden.
+( % i35) lista5:reverse(lista4);
+( % o35) [6, 5, −3, 2, −5, 6, 5, 2]
+unique. Devuelve una nueva lista eliminando los valores repetidos.
+( % i36) lista6:unique(lista5);
+( % o36) [−5, −3, 2, 5, 6]
+sort. Calcula una nueva lista ordenando los valores de menor a mayor.
+( % i37) lista7:sort(lista6);
+( % o37) [−5, −3, 2, 5, 6]
+flatten. Esta función aplicada a una tabla unifica los valores en una única lista.
+( % i38) flatten(tabla);
+( % o38) [1, 2, −3, 4, 8, 7, −10, 11]
+5
+
+Ejercicios
+1.
+
+a) Definir la función f (k) =
+
+2kπ
+6 .
+
+b) Definir una lista evaluando la función en los valores k = 0, . . . , 5.
+c) Crear una lista de puntos (cos x, sin x), para cada valor de x de la lista anterior.
+d ) Representar gráficamente los puntos anteriores.
+2.
+
+a) Definir la función
+
+√
+
+f (x) =
+
+2 cos x
+,
+sin2 x + 1
+
+√
+
+2 cos x sin x
+,
+sin2 x + 1
+
+!
+.
+
+b) Crear una lista de valores desde 0 hasta 10, con un espacio entre valores de 0.1
+c) Crear una tabla con las imágenes de f en los valores anteriores.
+d ) Representar gráficamente la tabla anterior.
+3.
+
+a) Crear una tabla de 5 elementos con los puntos (n, 2n3 , n − 2) empezando en n = 0.
+b) Obtener el elemento cuarto de la tabla anterior.
+c) Obtener el elemento segundo del tercer elemento de la tabla.
+d ) Escribir la tabla como una única lista.
+e) Ordenar la lista anterior.
+f ) Ordenar la lista de mayor a menor.
+
+6
+
+

@@ -1,0 +1,30 @@
+%!TeX root=main.tex
+
+\section{Error absoluto y error relativo}
+
+Cuando decimos que $\pi$ vale aproximadamente $3.14$,
+que la distancia de Cádiz a Granada es de aproximadamente
+trescientos kilómetros o que hemos pescado una dorada de
+3 kilos cuando en realidad pesaba 1 kilo,
+estamos cometiendo errores.
+Existen dos maneras de contabilizar los errores, el
+error absoluto que mide la diferencia que hay entre
+la aproximación y el valor real,
+y el error relativo, que mide la proporción de la diferencia
+con el valor exacto.
+
+Uno de los errores que aparecen en los cálculos numéricos
+provienen de la manera que se guarda los valores en el ordenador.
+Mostremos un caso donde se aprecie.
+
+\input{errores-1}
+
+Lo que ocurre es que cuando escribimos un número en decimal,
+como es $0.1$, el ordenador aproxima al valor más cercano
+en la representación en base 2 en un tipo de formato que
+se llama coma flotante.
+
+En este caso se puede calcular el error absoluto cometido
+al aproximar $0.1$ de la siguiente manera.
+
+\input{errores-2}
